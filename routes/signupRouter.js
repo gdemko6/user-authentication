@@ -8,8 +8,8 @@ router.post("/",
     [
         body('email').isEmail().withMessage('Invalid email format'),
         body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
-        body('first').notEmpty().withMessage('First name is required'),
-        body('last').notEmpty().withMessage('Last name is required')
+        body('first').notEmpty().withMessage('First name is required').isLength({ max: 50} ).withMessage('Name cannot exceed 50 characters'),
+        body('last').notEmpty().withMessage('Last name is required').isLength({ max: 50} ).withMessage('Name cannot exceed 50 characters')
     ],
     signupController.postSignup);
 
